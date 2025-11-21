@@ -17,18 +17,19 @@
             box-sizing: border-box;
         }
 
-        /* Remove scroll bars from the body */
+        /* Base layout */
         body, html {
             overflow: hidden;
             height: 100%;
         }
 
-        /* Full-page iframe to cover the whole viewport with invisible scroll bars */
+        /* Full-page iframe */
         .iframe-container {
             width: 100vw;
             height: 100vh;
             border: none;
             overflow: hidden;
+            display: block;
         }
 
         /* Hide scrollbar in iframe */
@@ -39,6 +40,17 @@
         .iframe-container {
             -ms-overflow-style: none;  /* for Internet Explorer and Edge */
             scrollbar-width: none;     /* for Firefox */
+        }
+
+        /* 🔧 MOBILE FIX: use dynamic viewport height so नीचे white patti न आए */
+        @media (max-width: 768px) {
+            html, body {
+                height: 100dvh;
+            }
+
+            .iframe-container {
+                height: 100dvh; /* instead of 100vh on mobile */
+            }
         }
     </style>
 </head>
@@ -53,7 +65,35 @@
             app_id: "djsbwoav"
         };
     </script>
-    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/djsbwoav';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else{w.addEventListener('load',l,false);}}})();</script>
+    <script>
+        (function(){
+            var w=window;
+            var ic=w.Intercom;
+            if(typeof ic==="function"){
+                ic('reattach_activator');
+                ic('update',w.intercomSettings);
+            } else {
+                var d=document;
+                var i=function(){i.c(arguments);};
+                i.q=[];
+                i.c=function(args){i.q.push(args);};
+                w.Intercom=i;
+                var l=function(){
+                    var s=d.createElement('script');
+                    s.type='text/javascript';
+                    s.async=true;
+                    s.src='https://widget.intercom.io/widget/djsbwoav';
+                    var x=d.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(s,x);
+                };
+                if(document.readyState==='complete'){
+                    l();
+                } else {
+                    w.addEventListener('load',l,false);
+                }
+            }
+        })();
+    </script>
     
 </body>
 </html>

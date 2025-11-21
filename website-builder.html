@@ -1,99 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Storekriti - India's best online store builder...</title>
-    <meta name="trustpilot-one-time-domain-verification-id" content="57dc881a-c4c7-4ca1-b33c-8e19cf134b95"/>
-    
-    <!-- Favicon link -->
-    <link rel="icon" href="/whawha.png" type="image/x-icon">
 
     <style>
-        /* Remove margins and paddings */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Base layout */
-        body, html {
-            overflow: hidden;
+        html, body {
             height: 100%;
+            overflow: hidden;
         }
 
-        /* Full-page iframe */
+        /* FULL SCREEN IFRAME */
         .iframe-container {
             width: 100vw;
-            height: 100vh;
+            height: 100dvh; /* dynamic viewport height */
             border: none;
-            overflow: hidden;
             display: block;
+            overflow: hidden;
         }
 
-        /* Hide scrollbar in iframe */
+        /* Hide scrollbar inside iframe */
         .iframe-container::-webkit-scrollbar {
-            display: none; /* for Chrome, Safari, and Opera */
+            display: none;
         }
 
         .iframe-container {
-            -ms-overflow-style: none;  /* for Internet Explorer and Edge */
-            scrollbar-width: none;     /* for Firefox */
-        }
-
-        /* 🔧 MOBILE FIX: use dynamic viewport height so नीचे white patti न आए */
-        @media (max-width: 768px) {
-            html, body {
-                height: 100dvh;
-            }
-
-            .iframe-container {
-                height: 100dvh; /* instead of 100vh on mobile */
-            }
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Embedded iframe with hidden scrollbars but scrollable content -->
-    <iframe src="https://website-builder-qzpp.vercel.app/" class="iframe-container"></iframe>
+    <!-- IFRAME: Change src to your website -->
+    <iframe 
+        src="https://website-builder-qzpp.vercel.app" 
+        class="iframe-container"
+        id="mainFrame"
+    ></iframe>
 
-    <!-- Intercom Chat Widget -->
+
+    <!-- JS FIX: Always adjust iframe height to visible area -->
     <script>
-        window.intercomSettings = {
-            app_id: "djsbwoav"
-        };
+        function fixHeight() {
+            const iframe = document.getElementById('mainFrame');
+            iframe.style.height = window.innerHeight + "px";
+        }
+
+        window.addEventListener("load", fixHeight);
+        window.addEventListener("resize", fixHeight);
     </script>
-    <script>
-        (function(){
-            var w=window;
-            var ic=w.Intercom;
-            if(typeof ic==="function"){
-                ic('reattach_activator');
-                ic('update',w.intercomSettings);
-            } else {
-                var d=document;
-                var i=function(){i.c(arguments);};
-                i.q=[];
-                i.c=function(args){i.q.push(args);};
-                w.Intercom=i;
-                var l=function(){
-                    var s=d.createElement('script');
-                    s.type='text/javascript';
-                    s.async=true;
-                    s.src='https://widget.intercom.io/widget/djsbwoav';
-                    var x=d.getElementsByTagName('script')[0];
-                    x.parentNode.insertBefore(s,x);
-                };
-                if(document.readyState==='complete'){
-                    l();
-                } else {
-                    w.addEventListener('load',l,false);
-                }
-            }
-        })();
-    </script>
-    
+
 </body>
 </html>

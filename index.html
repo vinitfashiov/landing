@@ -1,59 +1,1104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storekriti</title>
-    <meta name="trustpilot-one-time-domain-verification-id" content="57dc881a-c4c7-4ca1-b33c-8e19cf134b95"/>
-    
-    <!-- Favicon link -->
-    <link rel="icon" href="/whawha.png" type="image/x-icon">
+    <title>FlexyPe - One-Click Checkout</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        /* Remove margins and paddings */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        primary: '#0f172a',
+                        secondary: '#f8fafc',
+                        accent: '#3b82f6',
+                        border: '#e2e8f0',
+                        muted: {
+                            DEFAULT: '#f1f5f9',
+                            foreground: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        'fade-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        'accordion-down': {
+                            from: { height: '0' },
+                            to: { height: 'var(--radix-accordion-content-height)' }
+                        },
+                        'accordion-up': {
+                            from: { height: 'var(--radix-accordion-content-height)' },
+                            to: { height: '0' }
+                        }
+                    },
+                    animation: {
+                        marquee: 'marquee 40s linear infinite',
+                        'fade-up': 'fade-up 0.5s ease-out forwards',
+                        'accordion-down': 'accordion-down 0.2s ease-out',
+                        'accordion-up': 'accordion-up 0.2s ease-out'
+                    }
+                }
+            }
         }
-
-        /* Remove scroll bars from the body */
-        body, html {
-            overflow: hidden;
-            height: 100%;
-        }
-
-        /* Full-page iframe to cover the whole viewport with invisible scroll bars */
-        .iframe-container {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-            overflow: hidden;
-        }
-
-        /* Hide scrollbar in iframe */
-        .iframe-container::-webkit-scrollbar {
-            display: none; /* for Chrome, Safari, and Opera */
-        }
-
-        .iframe-container {
-            -ms-overflow-style: none;  /* for Internet Explorer and Edge */
-            scrollbar-width: none;     /* for Firefox */
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .hover-lift {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            }
         }
     </style>
 </head>
-<body>
 
-    <!-- Embedded iframe with hidden scrollbars but scrollable content -->
-    <iframe src="https://careercounsellingpatna.in/pre/" class="iframe-container"></iframe>
+<body class="bg-background text-foreground font-sans antialiased overflow-x-hidden">
 
-    <!-- Intercom Chat Widget -->
+    <!-- Navbar -->
+    <header id="navbar"
+        class="fixed top-0 left-0 right-0 z-[1000] w-full transition-all duration-200 bg-white/80 backdrop-blur-sm">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between h-[64px] sm:h-[72px] px-4 sm:px-6">
+            <!-- Logo -->
+            <a href="/" class="flex-shrink-0 relative w-[110px] sm:w-[130px]">
+                <img src="https://cdn.prod.website-files.com/66350ed557a725b3fae12d08/66350ed557a725b3fae12d62_logo-2-svg-black.svg"
+                    alt="FlexyPe Logo" class="h-[28px] sm:h-[32px] w-auto object-contain object-left">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-1">
+                <a href="#"
+                    class="px-4 py-2 text-[14px] font-medium text-[#0f172a] hover:text-[#3b82f6] transition-colors">Home</a>
+                <div class="relative group">
+                    <button
+                        class="flex items-center gap-1 px-4 py-2 text-[14px] font-medium text-[#0f172a] hover:text-[#3b82f6] transition-colors">
+                        Features
+                        <i data-lucide="chevron-down"
+                            class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"></i>
+                    </button>
+                    <div
+                        class="absolute top-full left-0 pt-2 opacity-0 invisible -translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+                        <div class="bg-white rounded-lg shadow-lg border border-[#e2e8f0] py-2 min-w-[180px]">
+                            <a href="#"
+                                class="block px-4 py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a] hover:bg-[#f8fafc] transition-colors">OTP
+                                Validation</a>
+                            <a href="#"
+                                class="block px-4 py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a] hover:bg-[#f8fafc] transition-colors">One-Click
+                                Discounts</a>
+                            <a href="#"
+                                class="block px-4 py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a] hover:bg-[#f8fafc] transition-colors">Pre-Filled
+                                Addresses</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <button
+                        class="flex items-center gap-1 px-4 py-2 text-[14px] font-medium text-[#0f172a] hover:text-[#3b82f6] transition-colors">
+                        Resources
+                        <i data-lucide="chevron-down"
+                            class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"></i>
+                    </button>
+                    <div
+                        class="absolute top-full left-0 pt-2 opacity-0 invisible -translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+                        <div class="bg-white rounded-lg shadow-lg border border-[#e2e8f0] py-2 min-w-[180px]">
+                            <a href="#"
+                                class="block px-4 py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a] hover:bg-[#f8fafc] transition-colors">Blog</a>
+                            <a href="#"
+                                class="block px-4 py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a] hover:bg-[#f8fafc] transition-colors">Case
+                                Studies</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#"
+                    class="px-4 py-2 text-[14px] font-medium text-[#0f172a] hover:text-[#3b82f6] transition-colors">About</a>
+                <a href="#"
+                    class="px-4 py-2 text-[14px] font-medium text-[#0f172a] hover:text-[#3b82f6] transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden lg:flex items-center">
+                <a href="#"
+                    class="bg-[#0f172a] text-white px-5 py-2.5 rounded-lg text-[14px] font-semibold transition-all hover:bg-[#1e293b] active:scale-[0.98]">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 -mr-2 text-[#0f172a]" aria-label="Toggle menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="lg:hidden fixed inset-0 top-[64px] sm:top-[72px] bg-white z-[999] transition-all duration-300 opacity-0 invisible pointer-events-none">
+            <div class="h-full overflow-y-auto">
+                <div class="flex flex-col px-4 py-4">
+                    <div class="border-b border-[#e2e8f0]">
+                        <a href="#" class="block py-4 text-[15px] font-semibold text-[#0f172a]">Home</a>
+                    </div>
+                    <div class="border-b border-[#e2e8f0]">
+                        <details class="group">
+                            <summary
+                                class="flex justify-between items-center py-4 text-[15px] font-semibold text-[#0f172a] cursor-pointer list-none">
+                                Features
+                                <i data-lucide="chevron-down"
+                                    class="w-5 h-5 transition-transform duration-200 group-open:rotate-180"></i>
+                            </summary>
+                            <div class="pb-4 pl-4 flex flex-col gap-1">
+                                <a href="#" class="py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a]">OTP
+                                    Validation</a>
+                                <a href="#" class="py-2.5 text-[14px] text-[#64748b] hover:text-[#0f172a]">One-Click
+                                    Discounts</a>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="mt-6">
+                        <a href="#"
+                            class="block w-full text-center bg-[#0f172a] text-white py-3.5 rounded-lg font-semibold text-[15px] active:scale-[0.98] transition-transform">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-[100svh] bg-[linear-gradient(to_bottom,#bae6fd_0%,#ffffff_40%,#ffffff_60%,#ffedd5_100%)] pt-[130px] sm:pt-[80px]">
+        <!-- <div class="absolute inset-0 bg-gradient-to-b from-[#f8fafc] to-white pointer-events-none"></div> -->
+        <div class="container relative z-10 mx-auto px-4 sm:px-6 max-w-[1200px] pt-4 pb-24 sm:py-16 md:py-20 lg:py-24">
+            <div class="flex flex-col items-center text-center">
+                <div class="mb-6 sm:mb-8">
+                    <div
+                        class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-green-100/80 hover:border-green-200 transition-colors cursor-default">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span class="text-[13px] sm:text-[14px] font-semibold text-[#0f172a] tracking-wide">Trusted by
+                            100+ D2C brands</span>
+                    </div>
+                </div>
+                <h1 class="mb-5 sm:mb-6 max-w-[320px] sm:max-w-[520px] md:max-w-[720px] lg:max-w-[800px]">
+                    <span
+                        class="block text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#0f172a]">
+                        One-Click Checkout
+                    </span>
+                    <span
+                        class="block text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#0f172a] mt-1">
+                        That <span class="text-[#3b82f6]">Converts</span>
+                    </span>
+                </h1>
+                <p
+                    class="mb-8 sm:mb-10 max-w-[300px] sm:max-w-[440px] md:max-w-[520px] text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] text-[#64748b]">
+                    Boost your conversion rates by 22% with a faster, smoother checkout experience built for modern D2C
+                    brands.
+                </p>
+                <div class="flex flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16">
+                    <a href="#"
+                        class="inline-flex items-center justify-center gap-2 h-[48px] sm:h-[52px] px-5 sm:px-6 md:px-7 rounded-lg bg-[#0f172a] text-white text-[14px] sm:text-[15px] font-semibold transition-all hover:bg-[#1e293b] active:scale-[0.98]">
+                        <span>Get Started</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.app.storekriti" target="_blank"
+                        class="inline-flex items-center justify-center gap-3 h-[48px] sm:h-[52px] px-5 sm:px-6 md:px-7 rounded-lg bg-slate-100 text-[#0f172a] transition-all hover:bg-slate-200 hover:border-slate-300 active:scale-[0.98] border border-slate-200">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                            alt="Play Store" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
+                        <div class="flex flex-col items-start leading-none">
+                            <span
+                                class="text-[10px] sm:text-[11px] font-medium uppercase tracking-wide opacity-80 text-[#64748b]">Get
+                                it on</span>
+                            <span class="text-[14px] sm:text-[16px] font-bold -mt-0.5">Google Play</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="relative w-full max-w-[900px] mx-auto">
+                    <div class="relative transition-all duration-300 hover:scale-[1.01]">
+                        <div class="relative aspect-[16/10] sm:aspect-[16/9] bg-transparent">
+                            <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/66c85ff83804410ce026c363_Website_20landing_20-_201-6.webp"
+                                alt="FlexyPe Dashboard Preview"
+                                class="h-full w-full object-cover rounded-xl sm:rounded-2xl">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-[#0f172a]/20 to-transparent rounded-xl sm:rounded-2xl">
+                                <button
+                                    class="flex items-center gap-3 rounded-full bg-white px-5 py-3 sm:px-6 sm:py-3.5 shadow-lg transition-all hover:scale-105 active:scale-100">
+                                    <div
+                                        class="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-[#0f172a]">
+                                        <i data-lucide="play" class="w-4 h-4 text-white fill-white ml-0.5"></i>
+                                    </div>
+                                    <span class="text-[14px] sm:text-[15px] font-semibold text-[#0f172a]">Watch
+                                        Demo</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 flex justify-center animate-fade-up" style="animation-delay: 0.2s;">
+                    <div
+                        class="flex flex-row items-center gap-2 sm:gap-6 px-3 sm:px-6 py-2 sm:py-3 bg-white/60 backdrop-blur-md border border-slate-200/60 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 w-fit max-w-full overflow-hidden">
+                        <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                            <div class="flex gap-0.5">
+                                <i data-lucide="star" class="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400"></i>
+                                <div class="relative">
+                                    <i data-lucide="star"
+                                        class="w-3 h-3 sm:w-4 sm:h-4 text-slate-200 fill-slate-200"></i>
+                                    <div class="absolute inset-0 overflow-hidden w-1/2">
+                                        <i data-lucide="star"
+                                            class="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-[12px] sm:text-[14px] font-semibold text-slate-700">4.5</span>
+                        </div>
+                        <div class="w-px h-3 sm:h-4 bg-slate-300 flex-shrink-0"></div>
+                        <div
+                            class="text-[11px] sm:text-[14px] font-medium text-slate-600 whitespace-nowrap overflow-hidden text-ellipsis">
+                            100+ Reviews <span class="hidden sm:inline">from Brands</span>
+                        </div>
+                        <div class="w-px h-3 sm:h-4 bg-slate-300 flex-shrink-0"></div>
+                        <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                            <span class="hidden sm:inline text-[12px] text-slate-400 font-medium">Verified on</span>
+                            <img src="https://cdn.worldvectorlogo.com/logos/trustpilot-2.svg" alt="Trustpilot"
+                                class="h-4 sm:h-5 w-auto" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Trusted By -->
+    <section class="py-16 sm:py-24 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col items-center text-center mb-10 sm:mb-14 animate-fade-up">
+                <!-- Badge -->
+                <div
+                    class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-blue-100/80 shadow-[0_2px_8px_rgba(59,130,246,0.06)] mb-5 hover:border-blue-200 transition-colors cursor-default">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    <span class="text-[13px] font-semibold text-[#0f172a] tracking-wide">Partnered with the Best</span>
+                </div>
+
+                <!-- Headline -->
+                <h2
+                    class="text-[26px] sm:text-[32px] md:text-[38px] font-bold text-[#0f172a] tracking-tight leading-[1.15] mb-4 max-w-[700px]">
+                    Trusted By Leading Brands
+                </h2>
+
+                <!-- Subheadline -->
+                <p class="text-[15px] sm:text-[16px] text-[#64748b] leading-relaxed max-w-[540px] opacity-90">
+                    FlexyPe powers the checkout for industry leaders, offering seamless checkout
+                    reliability.
+                </p>
+            </div>
+
+            <div class="relative w-full max-w-6xl mx-auto overflow-hidden group">
+                <!-- Gradient Masks -->
+                <div
+                    class="absolute top-0 left-0 z-10 h-full w-24 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none">
+                </div>
+                <div
+                    class="absolute top-0 right-0 z-10 h-full w-24 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none">
+                </div>
+
+                <!-- Scrolling Content -->
+                <div class="flex w-max animate-marquee items-center hover:[animation-play-state:paused]">
+                    <!-- Logos Loop 1 -->
+                    <div class="flex items-center gap-12 sm:gap-20 px-6 sm:px-10">
+
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/69046aaea2d9c2d63f4a30a0_myop-7.png"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Myop">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/69046cca511e1ba2188eb9d6_Plantigo_Logo_Long-8.png"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Plantigo">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/6904676d4a3d0ba14f2d05d4_wristly-14.png"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Wristly">
+
+                    </div>
+
+                    <!-- Logos Loop 2 -->
+                    <div class="flex items-center gap-12 sm:gap-20 px-6 sm:px-10">
+
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/69046aaea2d9c2d63f4a30a0_myop-7.png"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Myop">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/69046cca511e1ba2188eb9d6_Plantigo_Logo_Long-8.png"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Plantigo">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/6904676d4a3d0ba14f2d05d4_wristly-14.png"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Wristly">
+                        <img src="https://cdn.prod.website-files.com/66350ed557a725b3fae12d08/66350ed557a725b3fae12d70_Shusshh.webp"
+                            class="h-[32px] sm:h-[40px] w-auto object-contain grayscale opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+                            alt="Shusshh">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="flex justify-center mt-16 sm:mt-24 animate-fade-up" style="animation-delay: 0.2s;">
+                <a href="#"
+                    class="group relative inline-flex items-center gap-2 bg-[#0f172a] hover:bg-[#1e293b] text-white px-6 py-3 rounded-xl font-medium text-[14px] sm:text-[15px] transition-all duration-300 shadow-[0_4px_14px_-2px_rgba(15,23,42,0.3)] hover:shadow-[0_6px_20px_-4px_rgba(15,23,42,0.4)] hover:-translate-y-0.5">
+                    <span>Create your website now</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="transition-transform duration-300 group-hover:translate-x-1">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Snapshots -->
+    <section class="py-16 sm:py-20 md:py-24 bg-[#f8fafc]">
+        <div class="container mx-auto px-4 sm:px-6 max-w-[1200px]">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-[#0f172a] mb-4">
+                    Results That Speak
+                </h2>
+                <p class="text-[15px] sm:text-[16px] text-[#64748b] max-w-[480px] mx-auto">
+                    See how FlexyPe has transformed checkout performance for D2C brands.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-[#e2e8f0] hover-lift">
+                    <div
+                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#f1f5f9] flex items-center justify-center mb-5">
+                        <i data-lucide="trending-up" class="w-5 h-5 sm:w-6 sm:h-6 text-[#3b82f6]"></i>
+                    </div>
+                    <div class="text-[36px] sm:text-[44px] md:text-[52px] font-bold text-[#0f172a] mb-2 leading-none">
+                        22%</div>
+                    <h3 class="text-[16px] sm:text-[18px] font-semibold text-[#0f172a] mb-2">Higher Conversions</h3>
+                    <p class="text-[14px] sm:text-[15px] text-[#64748b] leading-relaxed">Boost your checkout conversion
+                        rate with our optimized flow.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-[#e2e8f0] hover-lift">
+                    <div
+                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#f1f5f9] flex items-center justify-center mb-5">
+                        <i data-lucide="refresh-ccw" class="w-5 h-5 sm:w-6 sm:h-6 text-[#3b82f6]"></i>
+                    </div>
+                    <div class="text-[36px] sm:text-[44px] md:text-[52px] font-bold text-[#0f172a] mb-2 leading-none">
+                        40%</div>
+                    <h3 class="text-[16px] sm:text-[18px] font-semibold text-[#0f172a] mb-2">Lower RTO</h3>
+                    <p class="text-[14px] sm:text-[15px] text-[#64748b] leading-relaxed">Reduce return-to-origin orders
+                        with smart verification.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-[#e2e8f0] hover-lift">
+                    <div
+                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#f1f5f9] flex items-center justify-center mb-5">
+                        <i data-lucide="credit-card" class="w-5 h-5 sm:w-6 sm:h-6 text-[#3b82f6]"></i>
+                    </div>
+                    <div class="text-[36px] sm:text-[44px] md:text-[52px] font-bold text-[#0f172a] mb-2 leading-none">
+                        48%</div>
+                    <h3 class="text-[16px] sm:text-[18px] font-semibold text-[#0f172a] mb-2">More Prepaid</h3>
+                    <p class="text-[14px] sm:text-[15px] text-[#64748b] leading-relaxed">Increase prepaid order share
+                        with smart incentives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 sm:py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-[1200px]">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-[#0f172a] mb-4">Everything You Need
+                </h2>
+                <p class="text-[15px] sm:text-[16px] text-[#64748b] max-w-[520px] mx-auto">
+                    A complete checkout solution with features designed to maximize conversions and minimize friction.
+                </p>
+            </div>
+            <div class="flex flex-col gap-12 sm:gap-16 md:gap-20">
+                <!-- Feature 1 -->
+                <div class="flex flex-col gap-8 md:gap-12 md:flex-row items-center">
+                    <div class="w-full md:w-1/2">
+                        <div
+                            class="relative aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#f8fafc] border border-[#e2e8f0]">
+                            <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/66c82c93ffdacc0ce5670f0b_OTP_20auth-23.webp"
+                                alt="OTP" class="object-contain p-4 sm:p-6 w-full h-full">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 md:max-w-[460px]">
+                        <h3 class="text-[20px] sm:text-[24px] md:text-[28px] font-bold text-[#0f172a] mb-4">OTP
+                            Authentication & Address Fill</h3>
+                        <p class="text-[14px] sm:text-[15px] md:text-[16px] text-[#64748b] leading-relaxed mb-6">
+                            Secure your checkout with OTP verification and speed up transactions with instant address
+                            autofill. Reduce fake orders and RTO issues effectively.
+                        </p>
+                        <div class="flex flex-col gap-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Reduce fake
+                                    orders</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Faster
+                                    checkout</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Lower RTO
+                                    rates</span>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 text-[14px] sm:text-[15px] font-semibold text-[#3b82f6] hover:text-[#2563eb] transition-colors">
+                            Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col gap-8 md:gap-12 md:flex-row-reverse items-center">
+                    <div class="w-full md:w-1/2">
+                        <div
+                            class="relative aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#f8fafc] border border-[#e2e8f0]">
+                            <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/66c82c93e77cb470f42c1515_Dynamic_20Couponing_20_26-24.webp"
+                                alt="Coupons" class="object-contain p-4 sm:p-6 w-full h-full">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 md:max-w-[460px]">
+                        <h3 class="text-[20px] sm:text-[24px] md:text-[28px] font-bold text-[#0f172a] mb-4">Smart
+                            Coupons & AI Upselling</h3>
+                        <p class="text-[14px] sm:text-[15px] md:text-[16px] text-[#64748b] leading-relaxed mb-6">
+                            Maximize average order value with dynamic couponing and AI-powered product recommendations
+                            that convert browsers into buyers.
+                        </p>
+                        <div class="flex flex-col gap-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Higher AOV</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Smart
+                                    recommendations</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Better
+                                    conversions</span>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 text-[14px] sm:text-[15px] font-semibold text-[#3b82f6] hover:text-[#2563eb] transition-colors">
+                            Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col gap-8 md:gap-12 md:flex-row items-center">
+                    <div class="w-full md:w-1/2">
+                        <div
+                            class="relative aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#f8fafc] border border-[#e2e8f0]">
+                            <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/images/66c82c93dac648fc177c7cf6_Prepaid_20Incentives_20_2-25.webp"
+                                alt="Incentives" class="object-contain p-4 sm:p-6 w-full h-full">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 md:max-w-[460px]">
+                        <h3 class="text-[20px] sm:text-[24px] md:text-[28px] font-bold text-[#0f172a] mb-4">Prepaid
+                            Incentives & COD Management</h3>
+                        <p class="text-[14px] sm:text-[15px] md:text-[16px] text-[#64748b] leading-relaxed mb-6">
+                            Boost prepaid orders with smart incentives and manage COD efficiently. Optimize your revenue
+                            flow with intelligent payment controls.
+                        </p>
+                        <div class="flex flex-col gap-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">More prepaid
+                                    orders</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Lower COD
+                                    risk</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-[#dcfce7] flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-3 h-3 text-[#22c55e]"></i>
+                                </div>
+                                <span class="text-[14px] sm:text-[15px] font-medium text-[#0f172a]">Better cash
+                                    flow</span>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 text-[14px] sm:text-[15px] font-semibold text-[#3b82f6] hover:text-[#2563eb] transition-colors">
+                            Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
+        <!-- Decorational background elements -->
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#e2e8f0] to-transparent">
+        </div>
+        <div
+            class="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none">
+        </div>
+        <div
+            class="absolute -bottom-[200px] -left-[200px] w-[500px] h-[500px] bg-slate-50 rounded-full blur-3xl opacity-50 pointer-events-none">
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 max-w-[1200px] relative z-10">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-[#0f172a] mb-4">
+                    Works With Your Stack
+                </h2>
+                <p class="text-[15px] sm:text-[16px] text-[#64748b] max-w-[480px] mx-auto">
+                    Seamlessly integrates with the tools you already use and love.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
+                <!-- Item 1: Razorpay -->
+                <div
+                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div class="h-10 w-full relative flex items-center justify-center">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/svgs/66350ed557a725b3fae12e4c_razorpay-6.svg"
+                            alt="Razorpay" class="h-8 object-contain">
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Razorpay</span>
+                </div>
+
+                <!-- Item 2: Shopify -->
+                <div
+                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div class="h-10 w-full relative flex items-center justify-center">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/icons/66d33caf9e923ea67060f644_flexype-shopify_20_1_-5.png"
+                            alt="Shopify" class="h-8 object-contain">
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Shopify</span>
+                </div>
+
+                <!-- Item 3: Meta -->
+                <div
+                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div class="h-10 w-full relative flex items-center justify-center">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/svgs/66350ed557a725b3fae12e56_meta-11.svg"
+                            alt="Meta" class="h-8 object-contain">
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Meta</span>
+                </div>
+
+                <!-- Item 4: WooCommerce -->
+                <div
+                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                        <i data-lucide="shopping-bag" class="w-6 h-6 text-orange-500"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">WooCommerce</span>
+                </div>
+
+                <!-- Item 5: Stripe -->
+                <div
+                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-indigo-50 group-hover:bg-indigo-100 transition-colors">
+                        <i data-lucide="credit-card" class="w-6 h-6 text-indigo-500"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Stripe</span>
+                </div>
+
+                <!-- Item 6: Magento -->
+                <div
+                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                        <i data-lucide="layers" class="w-6 h-6 text-orange-600"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Magento</span>
+                </div>
+
+                <!-- Item 7: PayPal -->
+                <div
+                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100 transition-colors">
+                        <i data-lucide="wallet" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">PayPal</span>
+                </div>
+
+                <!-- Item 8: WhatsApp -->
+                <div
+                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-green-50 group-hover:bg-green-100 transition-colors">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-green-500"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">WhatsApp</span>
+                </div>
+
+                <!-- Item 9: Google Ads -->
+                <div
+                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-red-50 group-hover:bg-red-100 transition-colors">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-red-500"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Google
+                        Ads</span>
+                </div>
+
+                <!-- Item 10: ShipRocket -->
+                <div
+                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    <div
+                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-purple-50 group-hover:bg-purple-100 transition-colors">
+                        <i data-lucide="truck" class="w-6 h-6 text-purple-500"></i>
+                    </div>
+                    <span
+                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">ShipRocket</span>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12">
+                <button
+                    class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-50 border border-slate-200 text-[#64748b] text-[14px] font-medium hover:bg-white hover:text-[#0f172a] hover:border-blue-200 hover:shadow-md transition-all">
+                    View all 20+ integrations
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-16 sm:py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-[1200px]">
+            <div class="flex flex-col sm:flex-row items-start sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
+                <div>
+                    <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-[#0f172a] mb-2">Success Stories
+                    </h2>
+                    <p class="text-[15px] sm:text-[16px] text-[#64748b]">Real results from brands using FlexyPe</p>
+                </div>
+                <!-- Navigation arrows -->
+                <div class="flex gap-2">
+                    <button id="stories-prev"
+                        class="w-10 h-10 rounded-full border border-[#e2e8f0] text-[#cbd5e1] flex items-center justify-center transition-all hover:border-[#0f172a] hover:text-[#0f172a] hover:bg-white">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <button id="stories-next"
+                        class="w-10 h-10 rounded-full border border-[#0f172a] text-[#0f172a] flex items-center justify-center transition-all hover:bg-[#0f172a] hover:text-white">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="stories-container"
+                class="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 scroll-smooth scroll-pl-4">
+                <!-- Story 1 -->
+                <div
+                    class="flex-shrink-0 w-[65vw] sm:w-[280px] md:w-[calc(25%-18px)] snap-start rounded-xl sm:rounded-2xl bg-[#fef3c7] p-6 sm:p-8">
+                    <div class="text-[18px] sm:text-[20px] font-bold text-[#0f172a] mb-6">PLOR</div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">65%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Improved Prepaid</div>
+                        </div>
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">120%
+                            </div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Higher Conversions</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 2 -->
+                <div
+                    class="flex-shrink-0 w-[65vw] sm:w-[280px] md:w-[calc(25%-18px)] snap-start rounded-xl sm:rounded-2xl bg-[#dbeafe] p-6 sm:p-8">
+                    <div class="text-[18px] sm:text-[20px] font-bold text-[#0f172a] mb-6">ZYRA</div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">15%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Increase in AOV</div>
+                        </div>
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">41%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Lower RTO</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 3 -->
+                <div
+                    class="flex-shrink-0 w-[65vw] sm:w-[280px] md:w-[calc(25%-18px)] snap-start rounded-xl sm:rounded-2xl bg-[#fce7f3] p-6 sm:p-8">
+                    <div class="text-[18px] sm:text-[20px] font-bold text-[#0f172a] mb-6">Oucch!</div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">40%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Improved Prepaid</div>
+                        </div>
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">16%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Higher Conversions</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Story 4 -->
+                <div
+                    class="flex-shrink-0 w-[65vw] sm:w-[280px] md:w-[calc(25%-18px)] snap-start rounded-xl sm:rounded-2xl bg-[#d1fae5] p-6 sm:p-8">
+                    <div class="text-[18px] sm:text-[20px] font-bold text-[#0f172a] mb-6">Lagorii</div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">12%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Increase in AOV</div>
+                        </div>
+                        <div>
+                            <div class="text-[28px] sm:text-[32px] font-bold text-[#0f172a] leading-none mb-1">30%</div>
+                            <div class="text-[13px] sm:text-[14px] text-[#64748b]">Lower RTO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 sm:py-20 md:py-24 bg-[#f8fafc]">
+        <div class="container mx-auto px-4 sm:px-6 max-w-[800px]">
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-[#0f172a] mb-4">Frequently Asked
+                    Questions</h2>
+                <p class="text-[15px] sm:text-[16px] text-[#64748b]">Everything you need to know about FlexyPe</p>
+            </div>
+
+            <div class="space-y-3">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white rounded-xl border border-[#e2e8f0] transition-all">
+                    <button class="w-full flex items-center justify-between p-5 sm:p-6 text-left"
+                        onclick="toggleFaq(this)">
+                        <span class="text-[#0f172a] text-[15px] sm:text-[16px] font-semibold pr-4">What does FlexyPe
+                            cost?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-[#64748b] flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-200">
+                        <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                            <p class="text-[#64748b] text-[14px] sm:text-[15px] leading-relaxed">Our pricing starts at
+                                just Rs.1,999/month, designed to deliver ROI from day one. No hidden fees, no Shopify
+                                transaction cuts, and full access to all features.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white rounded-xl border border-[#e2e8f0] transition-all">
+                    <button class="w-full flex items-center justify-between p-5 sm:p-6 text-left"
+                        onclick="toggleFaq(this)">
+                        <span class="text-[#0f172a] text-[15px] sm:text-[16px] font-semibold pr-4">Is FlexyPe a payment
+                            gateway?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-[#64748b] flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-200">
+                        <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                            <p class="text-[#64748b] text-[14px] sm:text-[15px] leading-relaxed">No, FlexyPe is not a
+                                payment gateway. We integrate with leading payment gateways while providing a
+                                comprehensive checkout solution from cart to payment.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white rounded-xl border border-[#e2e8f0] transition-all">
+                    <button class="w-full flex items-center justify-between p-5 sm:p-6 text-left"
+                        onclick="toggleFaq(this)">
+                        <span class="text-[#0f172a] text-[15px] sm:text-[16px] font-semibold pr-4">Do I incur Shopify
+                            transaction fees?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-[#64748b] flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-200">
+                        <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                            <p class="text-[#64748b] text-[14px] sm:text-[15px] leading-relaxed">No. FlexyPe enables you
+                                to sidestep Shopify's transaction fees, saving you money and enhancing your
+                                profitability.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white rounded-xl border border-[#e2e8f0] transition-all">
+                    <button class="w-full flex items-center justify-between p-5 sm:p-6 text-left"
+                        onclick="toggleFaq(this)">
+                        <span class="text-[#0f172a] text-[15px] sm:text-[16px] font-semibold pr-4">How long does
+                            integration take?</span>
+                        <i data-lucide="chevron-down"
+                            class="w-5 h-5 text-[#64748b] flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-200">
+                        <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                            <p class="text-[#64748b] text-[14px] sm:text-[15px] leading-relaxed">Integration is quick
+                                and hassle-free. Most brands are up and running within 24-48 hours with hands-on support
+                                from our team.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 sm:mt-12 text-center">
+                <p class="text-[14px] sm:text-[15px] text-[#64748b] mb-4">Still have questions?</p>
+                <a href="#"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-[#0f172a] text-white rounded-lg text-[14px] sm:text-[15px] font-semibold hover:bg-[#1e293b] transition-colors">Contact
+                    Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
+        <div class="max-w-[1000px] mx-auto">
+            <div class="bg-[#0f172a] rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 text-center">
+                <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-white mb-4">Ready to Transform Your
+                    Checkout?</h2>
+                <p class="text-[15px] sm:text-[16px] text-[#94a3b8] mb-8 max-w-[480px] mx-auto">
+                    Join 500+ D2C brands that have improved their conversion rates with FlexyPe.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                    <a href="#"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-[#0f172a] px-6 py-3.5 sm:px-8 sm:py-4 rounded-lg font-semibold text-[14px] sm:text-[15px] transition-all hover:bg-[#f8fafc] active:scale-[0.98]">
+                        Get Started Free <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent border border-white/20 text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-lg font-semibold text-[14px] sm:text-[15px] transition-all hover:bg-white/10 active:scale-[0.98]">
+                        Schedule Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-[#e2e8f0] pt-12 sm:pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 max-w-[1200px]">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6 mb-12">
+                <div class="col-span-2 sm:col-span-1">
+                    <a href="/" class="mb-4 block w-[120px]">
+                        <img src="https://cdn.prod.website-files.com/66350ed557a725b3fae12d08/66350ed557a725b3fae12d62_logo-2-svg-black.svg"
+                            alt="FlexyPe Logo" width="120" height="32" class="object-contain">
+                    </a>
+                    <p class="text-[#64748b] text-[14px] leading-relaxed max-w-[280px]">One-click checkout solution for
+                        modern D2C brands.</p>
+                </div>
+                <div>
+                    <h4 class="text-[#0f172a] text-[14px] font-semibold mb-4">Product</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Features</a>
+                        </li>
+                        <li><a href="#" class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Case
+                                Studies</a></li>
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[#0f172a] text-[14px] font-semibold mb-4">Company</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">About</a></li>
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Contact</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[#0f172a] text-[14px] font-semibold mb-4">Legal</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Privacy</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Terms</a></li>
+                        <li><a href="#"
+                                class="text-[#64748b] text-[14px] hover:text-[#0f172a] transition-colors">Security</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-[#e2e8f0] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-[#64748b] text-[13px]">2025 FlexyPe. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-[#64748b] hover:text-[#0f172a] transition-colors"><i data-lucide="twitter"
+                            class="w-[18px] h-[18px]"></i></a>
+                    <a href="#" class="text-[#64748b] hover:text-[#0f172a] transition-colors"><i data-lucide="linkedin"
+                            class="w-[18px] h-[18px]"></i></a>
+                    <a href="#" class="text-[#64748b] hover:text-[#0f172a] transition-colors"><i data-lucide="instagram"
+                            class="w-[18px] h-[18px]"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        window.intercomSettings = {
-            app_id: "djsbwoav"
-        };
+        // FAQ Toggle
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            // Close all others
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('border-[#3b82f6]');
+                    otherItem.classList.add('border-[#e2e8f0]');
+                    otherItem.querySelector('.faq-content').style.maxHeight = '0px';
+                    otherItem.querySelector('i').classList.remove('rotate-180');
+                }
+            });
+
+            // Toggle current
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                item.classList.remove('border-[#3b82f6]');
+                item.classList.add('border-[#e2e8f0]');
+                icon.classList.remove('rotate-180');
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                item.classList.remove('border-[#e2e8f0]');
+                item.classList.add('border-[#3b82f6]');
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // Success Stories Scroll
+        const storiesContainer = document.getElementById('stories-container');
+        const prevBtn = document.getElementById('stories-prev');
+        const nextBtn = document.getElementById('stories-next');
+
+        if (storiesContainer && prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                storiesContainer.scrollBy({ left: -280, behavior: 'smooth' });
+            });
+            nextBtn.addEventListener('click', () => {
+                storiesContainer.scrollBy({ left: 280, behavior: 'smooth' });
+            });
+        }
     </script>
-    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/djsbwoav';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else{w.addEventListener('load',l,false);}}})();</script>
-    
+
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+                    mobileMenu.classList.add('opacity-100', 'visible');
+                    document.body.style.overflow = 'hidden';
+                    menuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+                } else {
+                    mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+                    mobileMenu.classList.remove('opacity-100', 'visible');
+                    document.body.style.overflow = '';
+                    menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                }
+                lucide.createIcons();
+            });
+        }
+
+        // Navbar Scroll Logic
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('bg-white', 'shadow-sm');
+                navbar.classList.remove('bg-white/80', 'backdrop-blur-sm');
+            } else {
+                navbar.classList.add('bg-white/80', 'backdrop-blur-sm');
+                navbar.classList.remove('bg-white', 'shadow-sm');
+            }
+        });
+
+    </script>
 </body>
+
 </html>

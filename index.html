@@ -596,148 +596,356 @@
         </div>
     </section>
 
-    <!-- Integrations -->
-    <section class="py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
-        <!-- Decorational background elements -->
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#e2e8f0] to-transparent">
+    <!-- Integrations (Clean Hub) -->
+    <!-- Integrations (Compact Hub) -->
+    <section class="py-12 sm:py-16 bg-white relative overflow-hidden">
+
+        <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <!-- Mobile Flex: Column (Text -> Visual -> Button) -->
+            <!-- Desktop Flex: Row (Visual -> Text + Button) -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+
+                <!-- Text Section -->
+                <div class="w-full max-w-md lg:max-w-lg order-1 lg:order-2 text-center lg:text-left z-10">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold tracking-wide uppercase mb-4">
+                        Integrations
+                    </span>
+                    <h2
+                        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 tracking-tight leading-tight">
+                        Integrated with your <br />
+                        <span class="text-blue-600">favourite apps</span>
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-600 mb-6 leading-relaxed">
+                        Lorem ipsum dolor sit amet consectetur. Tortor sed aliquam sed id enim donec pharetra. Sit a
+                        quam sed ante nisi eget mauris amet.
+                    </p>
+
+                    <!-- Desktop Button (Hidden on Mobile) -->
+                    <div class="hidden lg:block">
+                        <button
+                            class="inline-flex items-center justify-center px-6 py-3 bg-black text-white text-sm rounded-lg font-medium hover:bg-slate-800 transition-all hover:scale-105 shadow-md shadow-slate-900/10">
+                            See Integration
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Visual Section (Square Grid) -->
+                <div class="w-full max-w-[340px] sm:max-w-[420px] order-2 lg:order-1 relative mb-6 lg:mb-0">
+
+                    <!-- Subtle Static Background Blob -->
+                    <div class="absolute inset-0 bg-blue-50/60 rounded-3xl blur-2xl transform rotate-3 scale-95"></div>
+
+                    <!-- The Grid Container -->
+                    <div class="relative z-10 grid grid-cols-3 gap-3 sm:gap-4 p-4">
+
+                        <!-- Row 1 -->
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/google-icon.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Google">
+                        </div>
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Slack">
+                        </div>
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/zoom-communications-logo.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Zoom">
+                        </div>
+
+                        <!-- Row 2 -->
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/dropbox-1.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Dropbox">
+                        </div>
+
+                        <!-- Center Main App Card (Prominent) -->
+                        <div
+                            class="aspect-square bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-600/20 transform scale-110 z-20">
+                            <svg viewBox="0 0 24 24" class="w-8 h-8 sm:w-10 sm:h-10 text-white fill-current"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                            </svg>
+                        </div>
+
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Intercom">
+                        </div>
+
+                        <!-- Row 3 -->
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/jira-1.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Jira">
+                        </div>
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/figma-1.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Figma">
+                        </div>
+                        <!-- Icon Card -->
+                        <div
+                            class="aspect-square bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                            <img src="https://cdn.worldvectorlogo.com/logos/notion-2.svg"
+                                class="w-6 h-6 sm:w-8 sm:h-8 object-contain" alt="Notion">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Mobile Button (Visible only on Mobile, Order 3) -->
+                <div class="w-full order-3 lg:hidden flex justify-center mt-2">
+                    <button
+                        class="w-full max-w-xs inline-flex items-center justify-center px-6 py-3 bg-black text-white text-sm rounded-lg font-medium hover:bg-slate-800 transition-all hover:scale-105 shadow-md shadow-slate-900/10">
+                        See Integration
+                    </button>
+                </div>
+
+            </div>
         </div>
-        <div
-            class="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none">
+
+        <!-- Custom CSS -->
+        <style>
+            @keyframes spin-slow {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .animate-spin-slow {
+                animation: spin-slow 60s linear infinite;
+            }
+
+            @keyframes float-slow {
+
+                0%,
+                100% {
+                    transform: translateY(0) translateX(0);
+                }
+
+                50% {
+                    transform: translateY(-5px) translateX(2px);
+                }
+            }
+
+            .animate-float-slow {
+                animation: float-slow 4s ease-in-out infinite;
+            }
+        </style>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-10 sm:py-14 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#ffffff] pointer-events-none">
         </div>
+        <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#e2e8f0] to-transparent"></div>
+
+        <!-- Ambient Glow -->
         <div
-            class="absolute -bottom-[200px] -left-[200px] w-[500px] h-[500px] bg-slate-50 rounded-full blur-3xl opacity-50 pointer-events-none">
+            class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply">
         </div>
 
         <div class="container mx-auto px-4 sm:px-6 max-w-[1200px] relative z-10">
-            <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-[24px] sm:text-[32px] md:text-[40px] font-bold text-[#0f172a] mb-4">
-                    Works With Your Stack
+            <!-- Header -->
+            <div class="text-center mb-6 sm:mb-10">
+                <h2 class="text-[28px] sm:text-[36px] font-bold text-[#0f172a] mb-3 tracking-tight">
+                    Plans that work best for <br class="hidden sm:block" />
+                    your <span class="relative inline-block text-[#3b82f6]">
+                        Business
+                        <svg class="absolute w-full h-3 bottom-0 left-0 text-blue-200 -z-10" viewBox="0 0 100 10"
+                            preserveAspectRatio="none">
+                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                        </svg>
+                    </span>
                 </h2>
-                <p class="text-[15px] sm:text-[16px] text-[#64748b] max-w-[480px] mx-auto">
-                    Seamlessly integrates with the tools you already use and love.
+                <p class="text-[15px] text-[#64748b] max-w-[540px] mx-auto mb-6">
+                    Trusted by millions. We help brands all around the world. Explore which option is right for you.
                 </p>
+
+                <!-- Toggle -->
+                <div class="inline-flex items-center p-1 bg-white border border-[#e2e8f0] rounded-full shadow-sm mb-6">
+                    <button
+                        class="px-5 py-2 rounded-full bg-[#3b82f6] text-white text-[13px] font-semibold shadow-md transition-all">
+                        Monthly
+                    </button>
+                    <button
+                        class="px-5 py-2 rounded-full text-[#64748b] text-[13px] font-medium hover:text-[#0f172a] transition-all flex items-center gap-2">
+                        Yearly <span
+                            class="text-[10px] font-bold text-[#f59e0b] bg-[#fffbeb] px-1.5 py-0.5 rounded-full uppercase tracking-wide">Save
+                            20%</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
-                <!-- Item 1: Razorpay -->
+            <!-- Grid/Scroll Container -->
+            <div
+                class="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 md:mx-0 md:px-0 gap-5 lg:gap-6 items-stretch scrollbar-hide">
+
+                <!-- Starter Card -->
                 <div
-                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div class="h-10 w-full relative flex items-center justify-center">
-                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/svgs/66350ed557a725b3fae12e4c_razorpay-6.svg"
-                            alt="Razorpay" class="h-8 object-contain">
+                    class="flex-shrink-0 w-[85vw] sm:w-[320px] snap-center scroll-ml-4 md:w-auto group relative bg-white rounded-2xl border border-[#e2e8f0] p-5 sm:p-6 hover:shadow-xl hover:border-blue-200 transition-all duration-300 h-full flex flex-col">
+                    <h3 class="text-[18px] font-bold text-[#0f172a] mb-1.5">Starter</h3>
+                    <p class="text-[13px] text-[#64748b] leading-relaxed mb-4">Great for small businesses and startups
+                        looking to get started.</p>
+
+                    <div class="flex items-baseline gap-1 mb-5">
+                        <span class="text-[30px] font-bold text-[#0f172a]">$12</span>
+                        <span class="text-[#64748b] text-[13px]">/month</span>
                     </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Razorpay</span>
+
+                    <a href="#"
+                        class="block w-full py-2.5 rounded-xl bg-[#1e293b] text-white text-center font-semibold text-[14px] hover:bg-[#0f172a] transition-colors shadow-lg shadow-slate-200 mb-6">
+                        Get started
+                    </a>
+
+                    <div class="space-y-2.5 mb-6 flex-grow">
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="package" class="w-4 h-4 text-[#64748b] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#475569]">Up to 500 orders/mo</span>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="bar-chart-2" class="w-4 h-4 text-[#64748b] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#475569]">Basic Analytics dashboard</span>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="shield" class="w-4 h-4 text-[#64748b] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#475569]">Standard fraud protection</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-5 border-t border-[#f1f5f9]">
+                        <p class="text-[12px] font-semibold text-[#0f172a] mb-3">Free includes:</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-[13px] text-[#64748b]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#3b82f6]"></i> Unlimited
+                                products
+                            </li>
+                            <li class="flex items-center gap-2 text-[13px] text-[#64748b]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#3b82f6]"></i> Email support
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Item 2: Shopify -->
+                <!-- Business Card (Popular) -->
                 <div
-                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div class="h-10 w-full relative flex items-center justify-center">
-                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/icons/66d33caf9e923ea67060f644_flexype-shopify_20_1_-5.png"
-                            alt="Shopify" class="h-8 object-contain">
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Shopify</span>
-                </div>
-
-                <!-- Item 3: Meta -->
-                <div
-                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div class="h-10 w-full relative flex items-center justify-center">
-                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/b3ab17a9-2052-49c7-82fb-5803c2b5c65b-flexype-io/assets/svgs/66350ed557a725b3fae12e56_meta-11.svg"
-                            alt="Meta" class="h-8 object-contain">
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Meta</span>
-                </div>
-
-                <!-- Item 4: WooCommerce -->
-                <div
-                    class="group bg-white border border-[#e2e8f0] rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
+                    class="flex-shrink-0 w-[85vw] sm:w-[320px] snap-center scroll-ml-4 md:w-auto group relative bg-[#ffffff] rounded-2xl border-2 border-[#3b82f6] p-5 sm:p-6 shadow-2xl shadow-blue-900/5 z-10 h-full flex flex-col">
                     <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-orange-50 group-hover:bg-orange-100 transition-colors">
-                        <i data-lucide="shopping-bag" class="w-6 h-6 text-orange-500"></i>
+                        class="absolute top-0 right-0 bg-[#3b82f6] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-bl-xl rounded-tr-lg">
+                        Popular
                     </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">WooCommerce</span>
+
+                    <h3 class="text-[18px] font-bold text-[#0f172a] mb-1.5">Business</h3>
+                    <p class="text-[13px] text-[#64748b] leading-relaxed mb-4">Best value for growing businesses that
+                        need
+                        more advanced features.</p>
+
+                    <div class="flex items-baseline gap-1 mb-5">
+                        <span class="text-[30px] font-bold text-[#0f172a]">$48</span>
+                        <span class="text-[#64748b] text-[13px]">/month</span>
+                    </div>
+
+                    <a href="#"
+                        class="block w-full py-2.5 rounded-xl bg-[#3b82f6] text-white text-center font-bold text-[14px] hover:bg-[#2563eb] transition-colors shadow-lg shadow-blue-200 mb-6">
+                        Get started
+                    </a>
+
+                    <div class="space-y-2.5 mb-6 flex-grow">
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="package-check" class="w-4 h-4 text-[#0f172a] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#0f172a] font-medium">Up to 2,500 orders/mo</span>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="database" class="w-4 h-4 text-[#0f172a] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#0f172a] font-medium">Advanced Reporting</span>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="globe" class="w-4 h-4 text-[#0f172a] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#0f172a] font-medium">Custom domain support</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-5 border-t border-[#f1f5f9]">
+                        <p class="text-[12px] font-semibold text-[#0f172a] mb-3">Everything in Starter, plus:</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-[13px] text-[#334155]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#3b82f6]"></i> Abandoned cart
+                                recovery
+                            </li>
+                            <li class="flex items-center gap-2 text-[13px] text-[#334155]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#3b82f6]"></i> Priority support
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Item 5: Stripe -->
+                <!-- Enterprise Card -->
                 <div
-                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-indigo-50 group-hover:bg-indigo-100 transition-colors">
-                        <i data-lucide="credit-card" class="w-6 h-6 text-indigo-500"></i>
+                    class="flex-shrink-0 w-[85vw] sm:w-[320px] snap-center scroll-ml-4 md:w-auto group relative bg-white rounded-2xl border border-[#e2e8f0] p-5 sm:p-6 hover:shadow-xl hover:border-blue-200 transition-all duration-300 h-full flex flex-col">
+                    <h3 class="text-[18px] font-bold text-[#0f172a] mb-1.5">Enterprise</h3>
+                    <p class="text-[13px] text-[#64748b] leading-relaxed mb-4">Advanced plan with enhanced security and
+                        unlimited access for large teams.</p>
+
+                    <div class="flex items-baseline gap-1 mb-5">
+                        <span class="text-[30px] font-bold text-[#0f172a]">$96</span>
+                        <span class="text-[#64748b] text-[13px]">/month</span>
                     </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Stripe</span>
+
+                    <a href="#"
+                        class="block w-full py-2.5 rounded-xl bg-[#1e293b] text-white text-center font-semibold text-[14px] hover:bg-[#0f172a] transition-colors shadow-lg shadow-slate-200 mb-6">
+                        Get started
+                    </a>
+
+                    <div class="space-y-2.5 mb-6 flex-grow">
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="infinity" class="w-4 h-4 text-[#64748b] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#475569]">Unlimited orders & users</span>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="server" class="w-4 h-4 text-[#64748b] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#475569]">Dedicated infrastructure</span>
+                        </div>
+                        <div class="flex items-start gap-2.5">
+                            <i data-lucide="lock" class="w-4 h-4 text-[#64748b] shrink-0 mt-0.5"></i>
+                            <span class="text-[13px] text-[#475569]">SSO & Advanced Security</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-5 border-t border-[#f1f5f9]">
+                        <p class="text-[12px] font-semibold text-[#0f172a] mb-3">Everything in Business, plus:</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-[13px] text-[#64748b]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#3b82f6]"></i> Custom SLAs
+                            </li>
+                            <li class="flex items-center gap-2 text-[13px] text-[#64748b]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#3b82f6]"></i> 24/7 Dedicated
+                                Manager
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Item 6: Magento -->
-                <div
-                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-orange-50 group-hover:bg-orange-100 transition-colors">
-                        <i data-lucide="layers" class="w-6 h-6 text-orange-600"></i>
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Magento</span>
-                </div>
-
-                <!-- Item 7: PayPal -->
-                <div
-                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100 transition-colors">
-                        <i data-lucide="wallet" class="w-6 h-6 text-blue-600"></i>
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">PayPal</span>
-                </div>
-
-                <!-- Item 8: WhatsApp -->
-                <div
-                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-green-50 group-hover:bg-green-100 transition-colors">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-green-500"></i>
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">WhatsApp</span>
-                </div>
-
-                <!-- Item 9: Google Ads -->
-                <div
-                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-red-50 group-hover:bg-red-100 transition-colors">
-                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-red-500"></i>
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">Google
-                        Ads</span>
-                </div>
-
-                <!-- Item 10: ShipRocket -->
-                <div
-                    class="group hidden sm:flex bg-white border border-[#e2e8f0] rounded-xl p-6 flex-col items-center justify-center gap-4 transition-all duration-300 hover:shadow-lg hover:border-blue-200 hover:-translate-y-1">
-                    <div
-                        class="h-10 w-10 flex items-center justify-center rounded-lg bg-purple-50 group-hover:bg-purple-100 transition-colors">
-                        <i data-lucide="truck" class="w-6 h-6 text-purple-500"></i>
-                    </div>
-                    <span
-                        class="text-[13px] font-semibold text-[#64748b] group-hover:text-[#0f172a] transition-colors">ShipRocket</span>
-                </div>
-
-            </div>
-
-            <div class="text-center mt-12">
-                <button
-                    class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-50 border border-slate-200 text-[#64748b] text-[14px] font-medium hover:bg-white hover:text-[#0f172a] hover:border-blue-200 hover:shadow-md transition-all">
-                    View all 20+ integrations
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
             </div>
         </div>
     </section>
